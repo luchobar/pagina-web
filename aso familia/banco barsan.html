@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asociación Barsán - Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        .login-container h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .login-container img {
+            width: 100px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            border: none;
+            color: #ffffff;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #2980b9;
+        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="logo_banco_barsan.jpg" alt="Logo Banco Barsán">
+        <h1>Banco Barsán</h1>
+        <p>Bienvenido a asofamilia</p>
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Iniciar Sesión</button>
+        <div id="error-message" class="error-message"></div>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+          
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const validPass = "1234";
+
+          
+            if (emailRegex.test(email)) {
+                if (password === validPass) {
+                    alert("¡Bienvenido a Banco Barsán!");
+                    window.location.href = "dashboard.html"; 
+                } else {
+                    errorMessage.textContent = "Contraseña incorrecta. Inténtelo de nuevo.";
+                }
+            } else {
+                errorMessage.textContent = "Por favor, ingresa un correo electrónico válido.";
+            }
+        }
+    </script>
+</body>
+</html>

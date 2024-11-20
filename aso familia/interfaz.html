@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Barsán - Panel Principal</title>
+</head>
+<body>
+    <div>
+      
+        <img src="WhatsApp Image 2024-11-20 at 9.39.57 AM (1).jpeg" alt="Logo Banco Barsán" width="100">
+        <h1>Banco Barsán</h1>
+        <p>Bienvenido al sistema bancario de la familia Barbosa Sánchez</p>
+    </div>
+    
+    <div>
+        
+        <h2>Saldo Total: $<span id="total-balance">0.00</span></h2>
+    </div>
+
+    <div>
+       
+        <label for="date">Selecciona una fecha:</label>
+        <input type="date" id="date">
+    </div>
+
+    <div>
+        
+        <h3>Agregar Dinero</h3>
+        <input type="number" id="add-amount" placeholder="Monto a agregar">
+        <button onclick="addMoney()">Agregar</button>
+    </div>
+
+    <div>
+       
+        <h3>Retirar Dinero</h3>
+        <input type="number" id="withdraw-amount" placeholder="Monto a retirar">
+        <button onclick="withdrawMoney()">Retirar</button>
+    </div>
+
+    <script>
+        let totalBalance = 0;
+
+        
+        function addMoney() {
+            const addAmount = parseFloat(document.getElementById('add-amount').value);
+            if (addAmount > 0) {
+                totalBalance += addAmount;
+                updateBalance();
+                alert(`Se han agregado $${addAmount.toFixed(2)} a tu cuenta.`);
+                document.getElementById('add-amount').value = '';
+            } else {
+                alert('Ingresa un monto válido para agregar.');
+            }
+        }
+
+        
+        function withdrawMoney() {
+            const withdrawAmount = parseFloat(document.getElementById('withdraw-amount').value);
+            if (withdrawAmount > 0) {
+                if (withdrawAmount <= totalBalance) {
+                    totalBalance -= withdrawAmount;
+                    updateBalance();
+                    alert(`Se han retirado $${withdrawAmount.toFixed(2)} de tu cuenta.`);
+                    document.getElementById('withdraw-amount').value = '';
+                } else {
+                    alert('Saldo insuficiente para realizar el retiro.');
+                }
+            } else {
+                alert('Ingresa un monto válido para retirar.');
+            }
+        }
+
+      
+        function updateBalance() {
+            document.getElementById('total-balance').textContent = totalBalance.toFixed(2);
+        }
+    </script>
+</body>
+</html>
